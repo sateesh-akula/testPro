@@ -4,11 +4,13 @@ pipeline {
             label 'maven-agent'
         }
     }
-
+environment{
+    PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+}
     stages {
-        stage('Clone code') {
+        stage('build') {
             steps {
-                git 'https://github.com/sateesh-akula/testPro.git'
+                sh 'mvn clean deploy'
             }
         }
     }
